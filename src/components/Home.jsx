@@ -7,59 +7,75 @@ import img3 from "../assets/images/img3.png";
 import img4 from "../assets/images/img4.png";
 import img5 from "../assets/images/img5.png";
 
+/* =================================
+   SLIDE DATA
+================================= */
+
 const slides = [
   {
     image: img1,
     label: "01 • LITTLE ADVENTURE",
-    title: "Masha & Bear",
+    title: "Masha",
     description:
-      "A playful little adventure filled with fun, friendship and unexpected moments.",
-    tab: "Masha Adventure",
+      "A cheerful little girl full of curiosity, fun and playful adventures.",
+    tab: "Masha",
   },
+
   {
     image: img2,
-    label: "02 • FOREST FRIENDS",
-    title: "Masha's World",
+    label: "02 • UNDER THE SEA",
+    title: "Ariel",
     description:
-      "Explore a magical forest where every day brings a new story to discover.",
-    tab: "Forest Friends",
+      "A beautiful underwater dream filled with ocean magic, friendship and wonder.",
+    tab: "Ariel",
   },
+
   {
     image: img3,
-    label: "03 • HAPPY MOMENTS",
-    title: "Masha & Friends",
+    label: "03 • ROYAL DREAMS",
+    title: "Sofia",
     description:
-      "Cute moments, playful adventures and unforgettable memories together.",
-    tab: "Happy Moments",
+      "A sweet princess discovering kindness, courage and the magic of being royal.",
+    tab: "Sofia",
   },
+
   {
     image: img4,
-    label: "04 • BIG ADVENTURE",
-    title: "Masha's Journey",
+    label: "04 • FUN & FRIENDSHIP",
+    title: "Mickey",
     description:
-      "Every journey becomes a beautiful adventure when friends are together.",
-    tab: "Big Adventure",
+      "A timeless character bringing cheerful moments, laughter and endless fun.",
+    tab: "Mickey",
   },
+
   {
     image: img5,
-    label: "05 • FOREST DAYS",
-    title: "Bear's Home",
+    label: "05 • ENCHANTED BEAUTY",
+    title: "Belle",
     description:
-      "A peaceful little world filled with friendship, fun and lovely surprises.",
-    tab: "Bear's Home",
+      "A graceful princess surrounded by beauty, imagination and an enchanting story.",
+    tab: "Belle",
   },
 ];
+
+/* =================================
+   HOME COMPONENT
+================================= */
 
 function Home() {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  /* =================================
+     CHANGE SLIDE
+  ================================= */
+
   const changeSlide = (newIndex, dir) => {
     if (isAnimating || newIndex === active) return;
 
-    setIsAnimating(true);
     setDirection(dir);
+    setIsAnimating(true);
 
     setTimeout(() => {
       setActive(newIndex);
@@ -70,10 +86,19 @@ function Home() {
     }, 950);
   };
 
+  /* =================================
+     NEXT
+  ================================= */
+
   const nextSlide = () => {
     const nextIndex = (active + 1) % slides.length;
+
     changeSlide(nextIndex, 1);
   };
+
+  /* =================================
+     PREVIOUS
+  ================================= */
 
   const prevSlide = () => {
     const prevIndex =
@@ -85,12 +110,20 @@ function Home() {
   return (
     <main className="home">
 
-      {/* BACKGROUND */}
+      {/* =================================
+          BACKGROUND GLOW
+      ================================= */}
+
       <div className="background-glow glow-one"></div>
       <div className="background-glow glow-two"></div>
 
-      {/* TOP LOGO */}
+
+      {/* =================================
+          TOP BAR
+      ================================= */}
+
       <header className="top-bar">
+
         <div className="logo">
           M A S H A
         </div>
@@ -98,57 +131,87 @@ function Home() {
         <div className="collection">
           &amp; BEAR
         </div>
+
       </header>
 
-      {/* MAIN AREA */}
+
+      {/* =================================
+          HERO
+      ================================= */}
+
       <section className="hero">
 
-        {/* =========================
-            CONTENT CARD
-        ========================== */}
 
-        <AnimatePresence mode="wait" initial={false}>
+        {/* =================================
+            CONTENT CARD
+        ================================= */}
+
+        <AnimatePresence
+          mode="wait"
+          initial={false}
+        >
+
           <motion.div
             key={active}
+
             className={`content-card ${
               active % 2 === 0
                 ? "content-right"
                 : "content-left"
             }`}
+
             initial={{
               x: direction > 0 ? -180 : 180,
               opacity: 0,
               scale: 0.92,
             }}
+
             animate={{
               x: 0,
               opacity: 1,
               scale: 1,
             }}
+
             exit={{
               x: direction > 0 ? 180 : -180,
               opacity: 0,
               scale: 0.92,
             }}
+
             transition={{
               duration: 0.8,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
+
+            {/* CARD LABEL */}
+
             <div className="content-label">
               {slides[active].label}
             </div>
 
-            <h1>{slides[active].title}</h1>
 
-            <p>{slides[active].description}</p>
+            {/* CARD TITLE */}
+
+            <h1>
+              {slides[active].title}
+            </h1>
+
+
+            {/* CARD DESCRIPTION */}
+
+            <p>
+              {slides[active].description}
+            </p>
+
           </motion.div>
+
         </AnimatePresence>
 
 
-        {/* =========================
+        {/* =================================
             IMAGE CAROUSEL
-        ========================== */}
+        ================================= */}
 
         <div className="carousel-container">
 
@@ -158,9 +221,10 @@ function Home() {
 
               let position = index - active;
 
-              /*
-                Circular positioning
-              */
+
+              /* ============================
+                 CIRCULAR POSITION
+              ============================ */
 
               if (position > 2) {
                 position -= slides.length;
@@ -170,9 +234,21 @@ function Home() {
                 position += slides.length;
               }
 
+
+              /* ============================
+                 POSITION CHECK
+              ============================ */
+
               const isCenter = position === 0;
+
               const isLeft = position === -1;
+
               const isRight = position === 1;
+
+
+              /* ============================
+                 ONLY SHOW 3 IMAGES
+              ============================ */
 
               if (
                 position < -1 ||
@@ -181,9 +257,15 @@ function Home() {
                 return null;
               }
 
+
+              /* ============================
+                 IMAGE ITEM
+              ============================ */
+
               return (
                 <motion.div
                   key={index}
+
                   className={`carousel-item ${
                     isCenter
                       ? "center-item"
@@ -191,7 +273,14 @@ function Home() {
                       ? "left-item"
                       : "right-item"
                   }`}
+
+
+                  /* ==========================
+                     POSITION ANIMATION
+                  ========================== */
+
                   animate={{
+
                     x: isCenter
                       ? 0
                       : isLeft
@@ -222,19 +311,33 @@ function Home() {
                       ? 100
                       : -80,
                   }}
+
+
+                  /* ==========================
+                     IMAGE TRANSITION
+                  ========================== */
+
                   transition={{
                     duration: 0.85,
                     ease: [0.22, 1, 0.36, 1],
                   }}
+
+
+                  /* ==========================
+                     Z INDEX
+                  ========================== */
+
                   style={{
                     zIndex: isCenter ? 10 : 5,
                   }}
                 >
+
                   <img
                     src={slide.image}
                     alt={slide.title}
                     draggable="false"
                   />
+
                 </motion.div>
               );
             })}
@@ -246,9 +349,9 @@ function Home() {
       </section>
 
 
-      {/* =========================
-          BOTTOM CATEGORY BAR
-      ========================== */}
+      {/* =================================
+          BOTTOM CATEGORY TABS
+      ================================= */}
 
       <div className="bottom-tabs">
 
@@ -256,11 +359,13 @@ function Home() {
 
           <button
             key={index}
+
             className={
               index === active
                 ? "tab active-tab"
                 : "tab"
             }
+
             onClick={() => {
 
               if (index === active) return;
@@ -270,9 +375,12 @@ function Home() {
 
               changeSlide(index, dir);
             }}
+
             disabled={isAnimating}
           >
+
             {slide.tab}
+
           </button>
 
         ))}
@@ -280,21 +388,32 @@ function Home() {
       </div>
 
 
-      {/* =========================
-          ARROW NAVIGATION
-      ========================== */}
+      {/* =================================
+          NAVIGATION
+      ================================= */}
 
       <div className="carousel-navigation">
 
+
+        {/* PREVIOUS BUTTON */}
+
         <button
           className="nav-button"
+
           onClick={prevSlide}
+
           disabled={isAnimating}
+
+          aria-label="Previous slide"
         >
           ←
         </button>
 
+
+        {/* SLIDE NUMBER */}
+
         <div className="slide-number">
+
           <span>
             {String(active + 1).padStart(2, "0")}
           </span>
@@ -304,12 +423,20 @@ function Home() {
           <span>
             {String(slides.length).padStart(2, "0")}
           </span>
+
         </div>
+
+
+        {/* NEXT BUTTON */}
 
         <button
           className="nav-button"
+
           onClick={nextSlide}
+
           disabled={isAnimating}
+
+          aria-label="Next slide"
         >
           →
         </button>
@@ -317,15 +444,25 @@ function Home() {
       </div>
 
 
-      {/* DECORATIVE DOTS */}
+      {/* =================================
+          FLOATING DECORATIVE DOTS
+      ================================= */}
 
       <div className="floating-dot dot-one"></div>
+
       <div className="floating-dot dot-two"></div>
+
       <div className="floating-dot dot-three"></div>
+
       <div className="floating-dot dot-four"></div>
 
     </main>
   );
 }
+
+
+/* =================================
+   EXPORT
+================================= */
 
 export default Home;

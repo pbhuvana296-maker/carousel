@@ -1,6 +1,6 @@
-/* ================================
+/* =================================
    RESET
-================================ */
+================================= */
 
 * {
   margin: 0;
@@ -18,19 +18,24 @@ body,
 body {
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
+  background: #11110f;
 }
 
 
-/* ================================
-   MAIN
-================================ */
+/* =================================
+   MAIN HOME
+================================= */
 
 .home {
   position: relative;
+
   width: 100vw;
   height: 100vh;
   min-height: 650px;
+
   overflow: hidden;
+
+  color: #fff;
 
   background:
     radial-gradient(
@@ -44,45 +49,51 @@ body {
       transparent 25%
     ),
     #11110f;
-
-  color: #fff;
 }
 
 
-/* ================================
+/* =================================
    BACKGROUND GLOW
-================================ */
+================================= */
 
 .background-glow {
   position: absolute;
+
   border-radius: 50%;
+
   pointer-events: none;
+
   filter: blur(90px);
 }
 
 .glow-one {
   width: 350px;
   height: 350px;
+
   left: -100px;
   top: 20%;
+
   background: rgba(255, 170, 80, 0.08);
 }
 
 .glow-two {
   width: 400px;
   height: 400px;
+
   right: -150px;
   bottom: -100px;
+
   background: rgba(255, 210, 120, 0.07);
 }
 
 
-/* ================================
+/* =================================
    TOP BAR
-================================ */
+================================= */
 
 .top-bar {
   position: absolute;
+
   top: 35px;
   left: 55px;
   right: 55px;
@@ -97,104 +108,217 @@ body {
 .logo {
   font-size: 18px;
   font-weight: 800;
+
   letter-spacing: 7px;
+
+  color: #fff;
 }
 
 .collection {
   font-size: 11px;
+
   letter-spacing: 4px;
-  opacity: 0.55;
+
+  color: rgba(255, 255, 255, 0.55);
 }
 
 
-/* ================================
+/* =================================
    HERO
-================================ */
+================================= */
 
 .hero {
   position: relative;
+
   width: 100%;
   height: 100%;
 }
 
 
-/* ================================
+/* =================================
    CONTENT CARD
-================================ */
+================================= */
 
 .content-card {
   position: absolute;
 
   top: 50%;
+
+  width: 360px;
+  min-height: 270px;
+
+  padding: 38px 34px;
+
   transform: translateY(-50%);
 
-  width: 330px;
-
   z-index: 25;
+
+  pointer-events: none;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+}
+
+
+/* =================================
+   CARD LIGHT EFFECT
+================================= */
+
+.content-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  top: -90px;
+  right: -70px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 190, 100, 0.12);
+
+  filter: blur(40px);
 
   pointer-events: none;
 }
 
 
-/*
-   IMPORTANT
+/* =================================
+   CARD SECOND LIGHT
+================================= */
 
-   Content position changes
-   according to active slide
-*/
+.content-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  bottom: -80px;
+  left: -60px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  filter: blur(30px);
+
+  pointer-events: none;
+}
+
+
+/* =================================
+   CARD POSITION
+================================= */
 
 .content-right {
-  left: 8vw;
+  left: 7vw;
 }
 
 .content-left {
-  right: 8vw;
+  right: 7vw;
 }
 
 
-/* ================================
-   CONTENT TEXT
-================================ */
+/* =================================
+   CARD LABEL
+================================= */
 
 .content-label {
-  margin-bottom: 22px;
+  position: relative;
+
+  margin-bottom: 18px;
 
   font-size: 10px;
+
   font-weight: 600;
 
   letter-spacing: 3px;
 
   color: rgba(255, 255, 255, 0.55);
+
+  z-index: 2;
 }
 
-.content-card h1 {
-  margin-bottom: 20px;
 
-  font-size: clamp(42px, 5vw, 76px);
+/* Small line before label */
+
+.content-label::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 25px;
+  height: 1px;
+
+  margin-right: 10px;
+
+  vertical-align: middle;
+
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
+/* =================================
+   CARD TITLE
+================================= */
+
+.content-card h1 {
+  position: relative;
+
+  margin-bottom: 18px;
+
+  font-size: clamp(38px, 4vw, 62px);
 
   line-height: 0.95;
 
   font-weight: 800;
 
-  letter-spacing: -3px;
+  letter-spacing: -2.5px;
 
   color: #fff;
+
+  z-index: 2;
 }
 
-.content-card p {
-  width: 300px;
 
-  font-size: 13px;
+/* =================================
+   CARD DESCRIPTION
+================================= */
+
+.content-card p {
+  position: relative;
+
+  width: 100%;
+
+  font-size: 12px;
 
   line-height: 1.8;
 
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.58);
+
+  z-index: 2;
 }
 
 
-/* ================================
-   CAROUSEL
-================================ */
+/* =================================
+   CAROUSEL CONTAINER
+================================= */
 
 .carousel-container {
   position: absolute;
@@ -212,6 +336,11 @@ body {
   z-index: 10;
 }
 
+
+/* =================================
+   CAROUSEL STAGE
+================================= */
+
 .carousel-stage {
   position: relative;
 
@@ -222,9 +351,9 @@ body {
 }
 
 
-/* ================================
+/* =================================
    CAROUSEL ITEM
-================================ */
+================================= */
 
 .carousel-item {
   position: absolute;
@@ -235,25 +364,27 @@ body {
   width: 330px;
   height: 430px;
 
-  transform-origin: center center;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transform-style: preserve-3d;
-
   margin-left: -165px;
   margin-top: -215px;
 
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transform-origin: center center;
+
+  transform-style: preserve-3d;
+
   user-select: none;
+
   pointer-events: none;
 }
 
 
-/* ================================
-   IMAGE
-================================ */
+/* =================================
+   CAROUSEL IMAGE
+================================= */
 
 .carousel-item img {
   width: 100%;
@@ -268,22 +399,26 @@ body {
   -webkit-user-drag: none;
 
   filter:
-    drop-shadow(0 30px 30px rgba(0, 0, 0, 0.35));
+    drop-shadow(
+      0 30px 30px rgba(0, 0, 0, 0.35)
+    );
 }
 
 
-/* ================================
+/* =================================
    CENTER IMAGE
-================================ */
+================================= */
 
 .center-item {
   filter: none;
+
+  z-index: 10;
 }
 
 
-/* ================================
+/* =================================
    SIDE IMAGES
-================================ */
+================================= */
 
 .left-item,
 .right-item {
@@ -293,9 +428,9 @@ body {
 }
 
 
-/* ================================
+/* =================================
    BOTTOM TABS
-================================ */
+================================= */
 
 .bottom-tabs {
   position: absolute;
@@ -306,6 +441,7 @@ body {
   transform: translateX(-50%);
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -315,6 +451,11 @@ body {
 
   white-space: nowrap;
 }
+
+
+/* =================================
+   TAB BUTTON
+================================= */
 
 .tab {
   position: relative;
@@ -339,15 +480,32 @@ body {
     transform 0.35s ease;
 }
 
+
+/* =================================
+   TAB HOVER
+================================= */
+
 .tab:hover {
   color: rgba(255, 255, 255, 0.75);
+
+  transform: translateY(-1px);
 }
+
+
+/* =================================
+   ACTIVE TAB
+================================= */
 
 .active-tab {
   color: #fff;
 
   transform: translateY(-2px);
 }
+
+
+/* =================================
+   ACTIVE TAB LINE
+================================= */
 
 .active-tab::after {
   content: "";
@@ -366,9 +524,9 @@ body {
 }
 
 
-/* ================================
+/* =================================
    NAVIGATION
-================================ */
+================================= */
 
 .carousel-navigation {
   position: absolute;
@@ -377,12 +535,18 @@ body {
   bottom: 48px;
 
   display: flex;
+
   align-items: center;
 
   gap: 18px;
 
   z-index: 50;
 }
+
+
+/* =================================
+   NAV BUTTON
+================================= */
 
 .nav-button {
   width: 42px;
@@ -401,6 +565,7 @@ body {
   cursor: pointer;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -410,6 +575,11 @@ body {
     transform 0.3s ease;
 }
 
+
+/* =================================
+   NAV HOVER
+================================= */
+
 .nav-button:hover {
   background: rgba(255, 255, 255, 0.1);
 
@@ -418,18 +588,27 @@ body {
   transform: scale(1.08);
 }
 
+
+/* =================================
+   NAV DISABLED
+================================= */
+
 .nav-button:disabled {
   opacity: 0.4;
+
   cursor: default;
+
+  transform: none;
 }
 
 
-/* ================================
+/* =================================
    SLIDE NUMBER
-================================ */
+================================= */
 
 .slide-number {
   display: flex;
+
   align-items: center;
 
   gap: 10px;
@@ -441,9 +620,19 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
+
+/* =================================
+   CURRENT NUMBER
+================================= */
+
 .slide-number span:first-child {
   color: #fff;
 }
+
+
+/* =================================
+   NUMBER LINE
+================================= */
 
 .number-line {
   width: 35px;
@@ -453,9 +642,9 @@ body {
 }
 
 
-/* ================================
+/* =================================
    FLOATING DOTS
-================================ */
+================================= */
 
 .floating-dot {
   position: absolute;
@@ -469,6 +658,11 @@ body {
 
   pointer-events: none;
 }
+
+
+/* =================================
+   DOT POSITIONS
+================================= */
 
 .dot-one {
   top: 25%;
@@ -491,22 +685,24 @@ body {
 }
 
 
-/* ================================
+/* =================================
    TABLET
-================================ */
+================================= */
 
 @media (max-width: 1000px) {
 
   .content-right {
-    left: 5vw;
+    left: 4vw;
   }
 
   .content-left {
-    right: 5vw;
+    right: 4vw;
   }
 
   .content-card {
-    width: 260px;
+    width: 300px;
+
+    padding: 30px 28px;
   }
 
   .content-card h1 {
@@ -514,22 +710,34 @@ body {
   }
 
   .content-card p {
-    width: 250px;
+    font-size: 11px;
   }
 
   .carousel-container {
     width: 600px;
   }
 
+  .carousel-item {
+    width: 300px;
+    height: 390px;
+
+    margin-left: -150px;
+    margin-top: -195px;
+  }
+
   .bottom-tabs {
     gap: 18px;
+  }
+
+  .carousel-navigation {
+    left: 35px;
   }
 }
 
 
-/* ================================
+/* =================================
    MOBILE
-================================ */
+================================= */
 
 @media (max-width: 700px) {
 
@@ -537,26 +745,37 @@ body {
     min-height: 600px;
   }
 
+
+  /* TOP BAR */
+
   .top-bar {
     top: 25px;
+
     left: 25px;
     right: 25px;
   }
 
   .logo {
     font-size: 14px;
+
     letter-spacing: 5px;
   }
 
   .collection {
     font-size: 8px;
+
+    letter-spacing: 3px;
   }
+
+
+  /* CAROUSEL */
 
   .carousel-container {
     width: 100vw;
+
     height: 420px;
 
-    top: 42%;
+    top: 38%;
   }
 
   .carousel-item {
@@ -567,40 +786,69 @@ body {
     margin-top: -170px;
   }
 
+
+  /* CONTENT CARD */
+
   .content-card {
     top: auto;
-    bottom: 135px;
 
-    width: 85%;
+    bottom: 135px;
 
     left: 50% !important;
     right: auto !important;
 
+    width: 88%;
+    max-width: 360px;
+
+    min-height: auto;
+
+    padding: 25px 22px;
+
     transform: translateX(-50%);
+
     text-align: center;
+
+    border-radius: 20px;
 
     z-index: 30;
   }
 
+
   .content-card h1 {
-    font-size: 38px;
+    font-size: 34px;
+
     letter-spacing: -1.5px;
+
+    margin-bottom: 12px;
   }
+
 
   .content-card p {
     width: 100%;
 
-    max-width: 320px;
+    max-width: 310px;
 
     margin: auto;
 
     font-size: 11px;
+
+    line-height: 1.7;
   }
+
 
   .content-label {
     font-size: 8px;
+
     margin-bottom: 12px;
   }
+
+
+  .content-label::before {
+    display: none;
+  }
+
+
+  /* TABS */
 
   .bottom-tabs {
     bottom: 70px;
@@ -624,15 +872,23 @@ body {
 
   .tab {
     font-size: 8px;
+
     flex-shrink: 0;
   }
 
+
+  /* NAVIGATION */
+
   .carousel-navigation {
     left: 50%;
+
     bottom: 20px;
 
     transform: translateX(-50%);
   }
+
+
+  /* DOTS */
 
   .floating-dot {
     display: none;
@@ -640,14 +896,14 @@ body {
 }
 
 
-/* ================================
+/* =================================
    SMALL MOBILE
-================================ */
+================================= */
 
 @media (max-width: 420px) {
 
   .carousel-container {
-    top: 37%;
+    top: 34%;
   }
 
   .carousel-item {
@@ -658,18 +914,27 @@ body {
     margin-top: -150px;
   }
 
+
   .content-card {
     bottom: 125px;
+
+    width: 90%;
+
+    padding: 21px 18px;
   }
 
+
   .content-card h1 {
-    font-size: 32px;
+    font-size: 30px;
   }
+
 
   .content-card p {
     font-size: 10px;
+
     line-height: 1.6;
   }
+
 
   .bottom-tabs {
     bottom: 65px;
